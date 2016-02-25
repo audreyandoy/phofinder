@@ -3,10 +3,18 @@
 	text-align: center;
 }
 
-form {
-	margin-left: 300px;
+.right {
+	margin-right: 20px;
+
 }
 
-button {
-	margin-left: 100px
+form {
+	margin: 40px;
+}
+legend {
+	font-size: 30px;
+}
+
+div {
+	margin: 10px;
 }
