@@ -37,21 +37,21 @@ console.log(req.session.userId);
 });
 
 router.post("/", function(req, res) {
-	var yelpId = req.body.yelpId;
+	var yelpId = req.body.YelpID;
 	var restName = req.body.restName;
 	var lat = req.body.lat;
 	var lng = req.body.lng;
-	// console.log(favId);
+	console.log(req.body);
 	// console.log(tag);
 	// res.send(favId);
-	console.log();
+	// console.log(req.session.userId);
 	db.user.findById(req.session.userId).then(function(user){
 		user.createUserfavorite({
-				where: {restName: restName,
+				restName: restName,
 						userId: user.id,
 						yelpId: yelpId,
-						lat: myFav.lat,
-						lng: myFav.lng}
+						lat: lat,
+						lng: lng
 				}).then(function(userFavorite) {
 					res.send(userFavorite);
 				})

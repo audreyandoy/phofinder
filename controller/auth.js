@@ -42,7 +42,10 @@ router.post('/login', function(req, res) {
       res.send(err);
     } else if (user){
       req.session.userId = user.id;
+      console.log(req.session);
+
       res.redirect('/');
+
     } else {
       res.send('Email and/or password invalid');
     }

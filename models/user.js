@@ -9,14 +9,14 @@ module.exports = function(sequelize, DataTypes) {
     password: {
       type: DataTypes.STRING,
       validate: {
-        len: [8, 99]
+        len: [3, 99]
       }
     },
     locationId: DataTypes.INTEGER,
   }, {
     classMethods: {
       associate: function(models) {
-        models.user.hasMany(models.userfavorite);
+        models.user.hasMany(models.userfavorites);
       },
       authenticate: function(email, password, callback) {
         this.find({

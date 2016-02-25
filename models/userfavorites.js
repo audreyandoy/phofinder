@@ -1,17 +1,17 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var userfavorite = sequelize.define('userfavorite', {
+  var userfavorites = sequelize.define('userfavorites', {
     userId: DataTypes.INTEGER,
     restName: DataTypes.STRING,
-    yelpId: DataTypes.INTEGER,
+    yelpId: DataTypes.STRING,
     lat: DataTypes.FLOAT,
     lng: DataTypes.FLOAT
   }, {
     classMethods: {
       associate: function(models) {
-        models.userfavorite.belongsTo(models.user);
+        models.userfavorites.belongsTo(models.user);
       }
     }
   });
-  return userfavorite;
+  return userfavorites;
 };

@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('userfavorite', {
+    return queryInterface.createTable('userfavorites', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -15,7 +15,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       yelpId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
        lat: {
         type: Sequelize.FLOAT
@@ -34,6 +34,6 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('userfavorite');
+    return queryInterface.dropTable('userfavorites');
   }
 };

@@ -34,8 +34,8 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', function(req, res) {
-  console.log(req.session.userId);
-  res.render('index', {alerts: req.flash()});
+  console.log(req.currentUser);
+  res.render('index');
 });
 
 app.get("/search", function(req, res) {
@@ -44,7 +44,7 @@ app.get("/search", function(req, res) {
 	// 	res.render("search");
 	// } else {
 	// 	req.flash('You must be logged in to search for Pho!');
-	// 	res.render("/auth/signup");
+	// 	res.render("signup");
 	// }
 });
 
@@ -65,4 +65,4 @@ app.get("/about", function(req, res) {
 app.use('/result', require('./controller/search'));
 app.use('/auth', require('./controller/auth'));
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000)

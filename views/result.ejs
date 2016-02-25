@@ -29,10 +29,10 @@
 	<form action="/result" method="POST">
 		<div class="input-field"> 
 			<div class="form-group">
-				<input type="hidden" class="form-control" name="id" value="<%= business.id %>">
-				<input type="hidden" class="form-control" name="name" value="<%= business.name %>">
-				<input type="hidden" class="form-control" name="id" value="<%= business.lat %>">
-				<input type="hidden" class="form-control" name="id" value="<%= business.lng %>">
+				<input type="hidden" class="form-control" name="YelpID" value="<%= business.id %>">
+				<input type="hidden" class="form-control" name="restName" value="<%= business.name %>">
+				<input type="hidden" class="form-control" name="lat" value="<%= data.region.center.latitude %>">
+				<input type="hidden" class="form-control" name="lng" value="<%= data.region.center.longitude %>">
 			
 			<button type="submit" class="waves-effect waves-light btn-large"><i class="material-icons">I'm going!</button>
 			
