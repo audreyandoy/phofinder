@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>PhoFinder</title>
+
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+
+</head>
+<body>
+
+<nav>
+	<div class="nav-wrapper">
+		<a href="/" class="brand-logo center">PhoFindr</a>
+		<ul id="nav-mobile" class="left hide-on-med-and-down">
+			<li><a href="/About">About</a></li>
+			<li><a href="/Profile">Profile</a></li>
+			<li><a href="/Search">Search</a></li>
+
+		</ul>
+	</div>
+</nav>
+  
+    <div class="container">
+      <div>Current user: <%= currentUser.name %></div>
+      <%- body %>
+    </div>
+
+
+
+<!-- Compiled and minified JavaScript -->
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+</body>
+</html>

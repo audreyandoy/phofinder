@@ -1,0 +1,48 @@
+
+	
+	<% data.businesses.forEach(function(business) { %>
+<div class="card">
+
+	 <div class="row">
+	 
+	<!-- <%= JSON.stringify(data.region) %> 	  -->
+		<!-- <%= business.location.coordinate.latitude	 %>
+				<%= business.location.coordinate.longitude	 %> -->
+
+		<%= business.id %>
+		<h3><%= business.name %></h3>
+		<p>
+			<img src="<%= business.image_url %>">
+		</p>
+		<p>
+			<a href="<%= business.url %>">Yelp</a>
+		</p>
+		<p>
+			Phone: <%= business.display_phone %>
+		</p>
+		<p>Number of Reviews:<%= business.review_count %></p>
+		<p><img src="<%= business.rating_img_url_small %>"></p>
+		<p><%= data.region.center.latitude %>
+		<%= data.region.center.longitude %>
+		</p>
+		<p>
+	<form action="/result" method="POST">
+		<div class="input-field"> 
+			<div class="form-group">
+				<input type="hidden" class="form-control" name="id" value="<%= business.id %>">
+				<input type="hidden" class="form-control" name="name" value="<%= business.name %>">
+				<input type="hidden" class="form-control" name="id" value="<%= business.lat %>">
+				<input type="hidden" class="form-control" name="id" value="<%= business.lng %>">
+			
+			<button type="submit" class="waves-effect waves-light btn-large"><i class="material-icons">I'm going!</button>
+			
+			</div>
+		</div>
+	</form>
+		</p>
+	 </div>
+
+
+</div>
+	<% }) %>
+
