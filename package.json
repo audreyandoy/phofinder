@@ -20,6 +20,7 @@
     "pg-hstore": "^2.3.2",
     "request": "^2.69.0",
     "sequelize": "^3.19.3",
+    "sequelize-cli": "^2.3.1",
     "session": "^0.1.0",
     "yelp": "^1.0.1"
   }
