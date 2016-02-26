@@ -37,26 +37,21 @@ console.log(req.session.userId);
 });
 
 router.post('/', function(req, res) {
-	var yelpId = req.body.YelpID;
+	var userId = req.session.userId;
+	var yelpId = req.body.yelpID;
 	var restName = req.body.restName;
 	var lat = req.body.lat;
 	var lng = req.body.lng;
-	console.log(req.body);
-	// console.log(tag);
-	// res.send(favId);
-	// console.log(req.session.userId);
-	db.user.findById(req.session.userId).then(function(user){
-		db.user.createUserfavorite({
-						restName: restName,
-						userId: user.id,
-						yelpId: yelpId,
-						lat: lat,
-						lng: lng
-				}).then(function(userFavorite) {
-					res.send(userFavorite);
-				})
-		});
+	db.userfavorites.findOrCreate({
+		userId: userId,
+		restName: restName,
+		yelpId: yelpId,
+		lat: lat,
+		lng: lng
+	}).then(function(userFavorite) {
+		res.redirect('profile');
 	});
+});
 
 
 

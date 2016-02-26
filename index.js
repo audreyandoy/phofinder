@@ -51,15 +51,10 @@ app.get("/profile", function(req, res) {
 	db.userfavorites.findAll().then(function(favorites){
   res.render("profile", {
           favorites: favorites
+    
     });
 
   });
-});
-
-
-
-app.get("/profile", function(req, res) {
-	res.render("profile")
 });
 
 

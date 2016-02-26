@@ -19,8 +19,6 @@ body {
   z-index: -100;
 }
 
-
-
 .nav .navbar {
 	margin: 10px;
 
@@ -34,6 +32,7 @@ body {
 .intro {
 	text-align: center;
 	opacity: 0.7;
+	margin-top: 150px;
 }
 
 .card {
@@ -49,8 +48,6 @@ body {
 	display: inline-block;
 	margin-left: 230px;
 }
-
-
 
 .input-field {
 	text-align: center;
