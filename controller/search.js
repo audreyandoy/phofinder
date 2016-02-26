@@ -42,17 +42,20 @@ router.post('/', function(req, res) {
 	var restName = req.body.restName;
 	var lat = req.body.lat;
 	var lng = req.body.lng;
-	db.userfavorites.findOrCreate({
-		userId: userId,
-		restName: restName,
-		yelpId: yelpId,
-		lat: lat,
-		lng: lng
-	}).then(function(userFavorite) {
-		res.redirect('profile');
+   	db.user.findById(userId).then(function(user){
+		db.userfavorites.findOrCreate({
+			where: {restName: restName},
+				defaults: {
+					 userId: userId,
+					 yelpId: yelpId,
+						lat: lat,
+						lng: lng
+				}
+		}).spread(function(userFavorite) {
+			res.redirect('/profile');
+		});
 	});
 });
-
 
 
 // router.post('/result', function(req, res) {
