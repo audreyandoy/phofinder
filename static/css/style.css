@@ -7,6 +7,10 @@ body {
   background-size: cover;
 }
 
+.hello {
+	margin-left: 25px;
+}
+
 #video-background {
 /*  making the video fullscreen  */
   position: fixed;

@@ -48,7 +48,11 @@ app.get("/search", function(req, res) {
 });
 
 app.get("/profile", function(req, res) {
-	db.userfavorites.findAll().then(function(favorites){
+	db.userfavorites.findAll({
+    where: {
+      userId: req.session.userId
+    }
+  }).then(function(favorites){
   res.render("profile", {
           favorites: favorites
     
