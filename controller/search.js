@@ -37,7 +37,7 @@ console.log(req.session.userId);
 });
 
 router.post('/', function(req, res) {
-	var yelpId = req.body.elpID;
+	var yelpId = req.body.YelpID;
 	var restName = req.body.restName;
 	var lat = req.body.lat;
 	var lng = req.body.lng;
@@ -46,7 +46,7 @@ router.post('/', function(req, res) {
 	// res.send(favId);
 	// console.log(req.session.userId);
 	db.user.findById(req.session.userId).then(function(user){
-		user.createUserfavorite({
+		db.user.createUserfavorite({
 						restName: restName,
 						userId: user.id,
 						yelpId: yelpId,

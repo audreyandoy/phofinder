@@ -21,7 +21,7 @@ router.post('/signup', function(req, res) {
     }
   }).spread(function(user, created) {  //created is a boolean
     if (created) {
-      res.redirect('/');
+      res.redirect('login');
     } else {
       res.send('User already exists');
     }
@@ -43,14 +43,19 @@ router.post('/login', function(req, res) {
     } else if (user){
       req.session.userId = user.id;
       console.log(req.session);
-
-      res.redirect('/');
+      res.redirect('/search');
 
     } else {
-      res.send('Email and/or password invalid');
+      res.redirect('login');
+      
     }
   });
 });
+
+router.get('/logout', function(req, res) {
+  req.session.userId = false;
+  res.redirect('/');
+})
 
 
 

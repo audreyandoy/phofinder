@@ -1,7 +1,73 @@
-.card{
-	margin: 50px 50px 50px 50px;
+body {
+  margin: 0;
+  padding: 0;
+/*  Background fallback in case of IE8 & down, or in case video doens't load, such as with slower connections  */
+  background-image: url("/video/cilantro.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+#video-background {
+/*  making the video fullscreen  */
+  position: fixed;
+  right: 0; 
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+  width: auto; 
+  height: auto;
+  z-index: -100;
+}
+
+
+
+.nav .navbar {
+	margin: 10px;
+
+}
+
+.nav-wrapper, .btn {
+	background-color: #558b2f;
+	
+}
+
+.intro {
+	text-align: center;
+	opacity: 0.7;
+}
+
+.card {
 	text-align: center;
 }
+
+#results {
+	width: 350px;
+	height: 300px;
+	margin: 50px 50px 50px 50px;
+	/*overflow: scroll;*/
+	/*float: center;*/
+	display: inline-block;
+	margin-left: 230px;
+}
+
+
+
+.input-field {
+	text-align: center;
+	margin-left: 10px;
+}
+
+.title {
+	background-color: white;
+}
+
+
+/*#map {
+	width: 350px;
+	height: 350px;
+	float: right;
+	display: inline-block;
+}*/
 
 .right {
 	margin-right: 20px;
@@ -10,11 +76,11 @@
 
 form {
 	margin: 40px;
+	background-color: white;
 }
 legend {
 	font-size: 30px;
 }
 
-div {
-	margin: 10px;
-}
+
+

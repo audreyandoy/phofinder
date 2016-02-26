@@ -39,27 +39,28 @@ app.get('/', function(req, res) {
 });
 
 app.get("/search", function(req, res) {
-  res.render("search");
-	// if (req.currentUser) {
-	// 	res.render("search");
-	// } else {
-	// 	req.flash('You must be logged in to search for Pho!');
-	// 	res.render("signup");
-	// }
+	if (req.currentUser) {
+		res.render("search");
+	} else {
+		req.flash('You must be logged in to search for Pho!');
+		// res.render("login");
+	}
 });
 
-app.get("/restaurant", function(req, res) {
-	res.render("restaurant")
-})
+app.get("/profile", function(req, res) {
+	db.userfavorites.findAll().then(function(favorites){
+  res.render("profile", {
+          favorites: favorites
+    });
+
+  });
+});
+
+
 
 app.get("/profile", function(req, res) {
 	res.render("profile")
-})
-
-app.get("/about", function(req, res) {
-	res.render("about")
-})
-
+});
 
 
 app.use('/result', require('./controller/search'));

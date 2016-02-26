@@ -1,49 +1,48 @@
+	 <div class="intro col s12">
+	  	<h4>Your Pho Results... </h4>
+	  </div>
+	 <div class="col s12">
 
-	
-	<% data.businesses.forEach(function(business) { %>
-<div class="card">
+		<div id="results">
+			<% data.businesses.forEach(function(business) { %>
+			<div class="card">
+				<div class="card-image">
+					<img src="<%= business.image_url %>">
+					<h4><%= business.name %></h4>
+				</div>
 
-	 <div class="row">
-	 
-	<!-- <%= JSON.stringify(data.region) %> 	  -->
-		<!-- <%= business.location.coordinate.latitude	 %>
-				<%= business.location.coordinate.longitude	 %> -->
+				<!-- <%= JSON.stringify(data.region) %> 	  -->
+					<!-- <%= business.location.coordinate.latitude	 %>
+							<%= business.location.coordinate.longitude	 %> -->
 
-		<%= business.id %>
-		<h3><%= business.name %></h3>
-		<p>
-			<img src="<%= business.image_url %>">
-		</p>
-		<p>
-			<a href="<%= business.url %>">Yelp</a>
-		</p>
-		<p>
-			Phone: <%= business.display_phone %>
-		</p>
-		<p>Number of Reviews:<%= business.review_count %></p>
-		<p><img src="<%= business.rating_img_url_small %>"></p>
-		<p><%= data.region.center.latitude %>
-		<%= data.region.center.longitude %>
-		</p>
-		<p>
-	
-	<form action="/result" method="POST">
-		<div class="input-field"> 
-			<div class="form-group">
-				<input type="hidden" class="form-control" name="YelpID" value="<%= business.id %>">
-				<input type="hidden" class="form-control" name="restName" value="<%= business.name %>">
-				<input type="hidden" class="form-control" name="lat" value="<%= data.region.center.latitude %>">
-				<input type="hidden" class="form-control" name="lng" value="<%= data.region.center.longitude %>">
-			
-			<button type="submit" class="waves-effect waves-light btn-large"><i class="material-icons">I'm going!</button>
-			
+			<!-- 		<div class="hide"><%= business.id %></div>
+			 -->	<p><a href="<%= business.url %>">Yelp Business</a></p>
+					<p>Phone: <%= business.display_phone %></p>
+					<p>Number of Reviews:<%= business.review_count %></p>
+					<p><img src="<%= business.rating_img_url_large %>"></p>
+						<!-- <div class="hide">
+							<%= data.region.center.latitude %>
+							<%= data.region.center.longitude %>
+						</div> -->
+				
+				<form action="/result" method="POST">
+						<!-- <button type="submit" class="waves-effect waves-light btn-large"><i class="material-icons">I'm going!</i></button> -->
+
+						<a href="/profile" class="btn btn-primary">I'm going</a>
+					<div class="input-field"> 
+						<div class="form-group">
+							<input type="hidden" class="form-control" name="YelpID" value="<%= business.id %>">
+							<input type="hidden" class="form-control" name="restName" value="<%= business.name %>">
+							<input type="hidden" class="form-control" name="lat" value="<%= data.region.center.latitude %>">
+							<input type="hidden" class="form-control" name="lng" value="<%= data.region.center.longitude %>">
+						</div>
+					</div>
+			  </form>
+			  </br>
 			</div>
+			<% }); %>
 		</div>
-	</form>
-		</p>
-	 </div>
+	</div>
+	</div>
 
-
-</div>
-	<% }) %>
-
+	
