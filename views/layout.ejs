@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
 
+
 </head>
 <body>
 
@@ -15,9 +16,11 @@
 	<div class="nav-wrapper">
 		<a href="/" class="brand-logo center">PhoFinder</a>
 		<ul id="nav-mobile" class="right hide-on-med-and-down">
-			<li><a href="/Profile">Profile</a></li>
+			<li><a href="/Profile" onclick="Materialize.toast('You must be logged in to view Profile', 1000)">Profile</a></li>
+			<li><a href="/Contact">Contact</a></li>
 			<li><a href="/Search" onclick="Materialize.toast('You must be logged in to search', 1000)">Search</a></li>
 			<li><a href="/auth/logout">Logout</a></li>
+
 		</ul>
 		<ul id="nav-mobile" class="hello left hide-on-med-and-down">
 				<li>Hello <b><%= currentUser.username %>!</b></li>

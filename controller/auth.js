@@ -1,6 +1,9 @@
 var express = require('express');
 var db = require('../models');
 var router = express.Router();
+var flash = require("flash");
+
+router.use(flash());
 
 router.get('/signup', function(req, res) {
 	res.render('signup');
@@ -23,10 +26,11 @@ router.post('/signup', function(req, res) {
     if (created) {
       res.redirect('login');
     } else {
-      res.send('User already exists');
+      Materialize.toast('User already exists', 1000);
+      
     }
    }).catch(function(err) {
-    res.send(err);
+    res.redirect('error');
    });
  });
 
@@ -57,6 +61,8 @@ router.get('/logout', function(req, res) {
   res.redirect('/');
 })
 
-
+router.get("/error", function(req, res) {
+  res.render("error");
+})
 
 module.exports = router;

@@ -43,8 +43,11 @@ app.get("/search", function(req, res) {
 		res.render("search");
 	} else {
 		req.flash('You must be logged in to search for Pho!');
-		// res.render("login");
 	}
+});
+
+app.get("/contact", function(req, res) {
+  res.render("contact");
 });
 
 app.get("/profile", function(req, res) {
@@ -53,13 +56,18 @@ app.get("/profile", function(req, res) {
       userId: req.session.userId
     }
   }).then(function(favorites){
-  res.render("profile", {
+    if (req.currentUser) {
+    res.render("profile", {
           favorites: favorites
-    
     });
+  } else {
+    req.flash('You must be logged in to view your profile');
+  }
 
   });
+
 });
+
 
 
 app.use('/result', require('./controller/search'));

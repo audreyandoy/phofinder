@@ -28,6 +28,10 @@ body {
 
 }
 
+.card {
+  text-align: center;
+}
+
 .nav-wrapper, .btn {
 	background-color: #558b2f;
 	
@@ -78,6 +82,7 @@ body {
 form {
 	margin: 40px;
 	background-color: white;
+
 }
 legend {
 	font-size: 30px;
@@ -85,6 +90,13 @@ legend {
 
 h3 {
 	margin-top: 20px;
+}
+
+#fav {
+  width: 400px;
+  height: 400px;
+  text-align: center;
+  margin-left: 170px;
 }
 
 

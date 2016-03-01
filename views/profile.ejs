@@ -1,13 +1,16 @@
-<div class="card"> <h4><%= currentUser.username %>'s Favs</h4>
-
+<div class="card"> 
+</br>
+<h4><%= currentUser.username %>'s Favs</h4>
+<div id="fav">
 
 <% favorites.forEach(function(business) { %>
 	<ul>
-		#<%= business.id %>
-	     <%= business.restName %>
+		<li>#<%= business.id %>
+	  <%= business.restName %>
+    </li>
 	</ul>
 				
-
 <% });%>
 
+</div>
 </div>
