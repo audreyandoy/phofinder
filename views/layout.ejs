@@ -23,7 +23,9 @@
 
 		</ul>
 		<ul id="nav-mobile" class="hello left hide-on-med-and-down">
+		<% if (currentUser.username) { %>
 				<li>Hello <b><%= currentUser.username %>!</b></li>
+		<% } %>
 		</ul>
 	</div>
 </nav>
