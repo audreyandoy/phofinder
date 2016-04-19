@@ -16,11 +16,15 @@
 	<div class="nav-wrapper">
 		<a href="/" class="brand-logo center">PhoFinder</a>
 		<ul id="nav-mobile" class="right hide-on-med-and-down">
-			<li><a href="/Profile" onclick="Materialize.toast('You must be logged in to view Profile', 1000)">Profile</a></li>
+				<%	if (currentUser) { %> 
+			<li><a href="/Profile">Profile</a>
+				<% } %>
+			</li>
 			<li><a href="/Contact">Contact</a></li>
 			<li><a href="/Search" onclick="Materialize.toast('You must be logged in to search', 1000)">Search</a></li>
+			<% if (currentUser) { %>
 			<li><a href="/auth/logout">Logout</a></li>
-
+			<% } %>
 		</ul>
 		<ul id="nav-mobile" class="hello left hide-on-med-and-down">
 		<% if (currentUser.username) { %>

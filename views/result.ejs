@@ -1,23 +1,25 @@
-<div class="title">
-	<h4>Your Pho Results... </h4>
+<div class="col s12 m6 title">
+	<h4>Your Pho Results...</h4>
+
 </div>
 <ul>
 <div class="row">
 	<% data.businesses.forEach(function(business) { %>
-			 		<div class="col s4 m4">
-		        <div class="card-panel teal">
-					<li>
 
-						 <div class="results">
-							<div class="card-image">
-								<img src="<%= business.image_url %>">
+			 		<div class="col s4 m4">
+		        <div class="card-panel white">
+					<li>
+						  <div class="photoName">
+								<img src="<%= business.image_url %>" class="yelp-img">
+									<h5><%= business.name %></h5>
 							</div>
-									<h6><%= business.name %></h6>
-									<p><a href="<%= business.url %>">Yelp Business</a></p>
+						<div class="row">
+						 <div class="results">
+<!-- 						 <p> <%= business.location.address %></p>
+ -->									<a href="<%= business.url %>">Yelp Business</a>
 									<p>Phone: <%= business.display_phone %></p>
 									<p>Number of Reviews:<%= business.review_count %></p>
-									<p><img src="<%= business.rating_img_url_large %>"></p>
-									<button type="submit" class="waves-effect waves-light btn-large"><i class="material-icons">I'm going!</i></button>
+									<p><img src="<%= business.rating_img_url_large %>" class="stars"></p>
 				<form action="/result" method="POST">
 									<div class="input-field"> 
 										<div class="form-group">
@@ -27,8 +29,12 @@
 											<input type="hidden" class="form-control" name="lng" value="<%= data.region.center.longitude %>">
 										</div>
 									</div>
- 				</form>
+									<p>
+										<button type="submit" class="waves-effect waves-light btn-large" responsive><i class="material-icons">I'm going!</i></button>
+									</p>
 							</div>
+						</div>
+ 				</form>
 		 </li>
 					</div>
 				</div>

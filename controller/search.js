@@ -16,7 +16,7 @@ var yelp = new yelp({
 // See http://www.yelp.com/developers/documentation/v2/search_api
 router.get('/', function(req, res) {
 console.log(req.session.userId);
-	yelp.search({ term: 'pho', location: req.query.search })
+	yelp.search({ term: 'pho', location: req.query.search, radius_filter: 16093.4, limit: 12 })
 	.then(function (data) {
 	  res.render('result', {data: data});
 	})

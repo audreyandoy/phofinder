@@ -44,11 +44,19 @@ body {
   margin-top: 150px;
 }
 
+.card-panel {
+  height: 330px;
+  padding: 10px 10px 0px 10px;
+  margin-bottom: 20px;
+  text-align: center;
+  width: 100%;
+}
 
 #results {
-  text-align: center;
-	/*overflow: scroll;*/
-	/*float: center;*/
+  float: right;
+  margin: 0px 10px 10px 10px; 
+  width: 50%;
+/*  clear: left;
 /*	display: inline-block;
 *//*	margin-left: 230px;*/
 }
@@ -56,6 +64,7 @@ body {
 .input-field {
 	text-align: center;
 	margin-left: 10px;
+  margin-bottom: 0px;
 }
 
 .title {
@@ -89,6 +98,39 @@ h3 {
 	margin-top: 20px;
 }
 
+.yelp-img {
+  float: left;
+  margin-bottom: 5px;
+  margin-right: 10px;
+}
+
+.photoName {
+  height: 110px;
+  text-align: left;
+  clear: left;
+}
+
+.stars {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+}
+
+button {
+  right: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+h5 {
+  margin-top: 5px;
+}
+
+
+.row {
+  margin: 0px 0px 0px 0px;
+}
 #fav {
   width: 400px;
   height: 400px;
