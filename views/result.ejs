@@ -1,46 +1,38 @@
-	 <div class="col s12">
-	  	<h4>Your Pho Results... </h4>
-	  </div>
-	 <div class="col s12">
+<div class="title">
+	<h4>Your Pho Results... </h4>
+</div>
+<ul>
+<div class="row">
+	<% data.businesses.forEach(function(business) { %>
+			 		<div class="col s4 m4">
+		        <div class="card-panel teal">
+					<li>
 
-		<div id="results">
-			<% data.businesses.forEach(function(business) { %>
-			<div class="card">
-				<div class="card-image">
-					<img src="<%= business.image_url %>">
-					<h4><%= business.name %></h4>
-				</div>
-
-				<!-- <%= JSON.stringify(data.region) %> 	  -->
-					<!-- <%= business.location.coordinate.latitude	 %>
-							<%= business.location.coordinate.longitude	 %> -->
-
-			<!-- 		<div class="hide"><%= business.id %></div>
-			 -->	<p><a href="<%= business.url %>">Yelp Business</a></p>
-					<p>Phone: <%= business.display_phone %></p>
-					<p>Number of Reviews:<%= business.review_count %></p>
-					<p><img src="<%= business.rating_img_url_large %>"></p>
-						<!-- <div class="hide">
-							<%= data.region.center.latitude %>
-							<%= data.region.center.longitude %>
-						</div> -->
-				
+						 <div class="results">
+							<div class="card-image">
+								<img src="<%= business.image_url %>">
+							</div>
+									<h6><%= business.name %></h6>
+									<p><a href="<%= business.url %>">Yelp Business</a></p>
+									<p>Phone: <%= business.display_phone %></p>
+									<p>Number of Reviews:<%= business.review_count %></p>
+									<p><img src="<%= business.rating_img_url_large %>"></p>
+									<button type="submit" class="waves-effect waves-light btn-large"><i class="material-icons">I'm going!</i></button>
 				<form action="/result" method="POST">
-					<button type="submit" class="waves-effect waves-light btn-large"><i class="material-icons">I'm going!</i></button>
-					<div class="input-field"> 
-						<div class="form-group">
-							<input type="hidden" class="form-control" name="yelpID" value="<%= business.id %>">
-							<input type="hidden" class="form-control" name="restName" value="<%= business.name %>">
-							<input type="hidden" class="form-control" name="lat" value="<%= data.region.center.latitude %>">
-							<input type="hidden" class="form-control" name="lng" value="<%= data.region.center.longitude %>">
-						</div>
+									<div class="input-field"> 
+										<div class="form-group">
+											<input type="hidden" class="form-control" name="yelpID" value="<%= business.id %>">
+											<input type="hidden" class="form-control" name="restName" value="<%= business.name %>">
+											<input type="hidden" class="form-control" name="lat" value="<%= data.region.center.latitude %>">
+											<input type="hidden" class="form-control" name="lng" value="<%= data.region.center.longitude %>">
+										</div>
+									</div>
+ 				</form>
+							</div>
+		 </li>
 					</div>
-			  </form>
-			  </br>
-			</div>
-			<% }); %>
-		</div>
-	</div>
-	</div>
-
+				</div>
+ <% }); %>
+</div>
+	</ul>
 	

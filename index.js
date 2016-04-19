@@ -68,8 +68,6 @@ app.get("/profile", function(req, res) {
 
 });
 
-
-
 app.use('/result', require('./controller/search'));
 app.use('/auth', require('./controller/auth'));
 

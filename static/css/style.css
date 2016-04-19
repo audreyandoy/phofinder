@@ -30,31 +30,27 @@ body {
 
 .card {
   text-align: center;
+
 }
 
 .nav-wrapper, .btn {
-	background-color: #558b2f;
-	
+  background-color: #558b2f;
+  
 }
 
 .intro {
-	text-align: center;
-	opacity: 0.7;
-	margin-top: 150px;
+  text-align: center;
+  opacity: 0.7;
+  margin-top: 150px;
 }
 
-.card {
-	text-align: center;
-}
 
 #results {
-	width: 350px;
-	height: 300px;
-	margin: 50px 50px 50px 50px;
+  text-align: center;
 	/*overflow: scroll;*/
 	/*float: center;*/
-	display: inline-block;
-	margin-left: 230px;
+/*	display: inline-block;
+*//*	margin-left: 230px;*/
 }
 
 .input-field {
@@ -64,8 +60,14 @@ body {
 
 .title {
 	background-color: white;
+  opacity: 0.7;
+  padding: 10px 10px 10px 10px;
+  margin: 10px;
 }
 
+ul {
+  margin: 0px 0px 0px 0px;
+}
 
 /*#map {
 	width: 350px;
@@ -79,11 +81,6 @@ body {
 
 }
 
-form {
-	margin: 40px;
-	background-color: white;
-
-}
 legend {
 	font-size: 30px;
 }
