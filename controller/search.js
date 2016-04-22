@@ -23,7 +23,6 @@ console.log(req.session.userId);
 	.catch(function (err) {
 	  console.error(err);
 	});
-
 });
 
 router.post('/', function(req, res) {

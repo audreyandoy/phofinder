@@ -1,17 +1,12 @@
- <div class="card">
-	<form action="/result" method="GET">
-	</br>
-	<legend>Let's find you some Pho!</legend>
-	</br>
-		<div class="input-field"> 
-			<div class="form-group">
-				<label class="control-label" for="">Please type in a city and state below</label>
-				<span class="help-block"></span>
-				<input type="search" class="form-control" name="search" id="search" placeholder="Ex: Seattle, WA">
-			</div>
-		</div>
-		<button type="submit" class="btn">Submit</button>
-	</form>
-		</br>
-	
-</div>
+ 	<div class="row">
+		<form class="col s12 search" action="/result" method="GET">
+		<h4>Let's find you some Pho!</h4>
+			<div class="input-field col s12"> 
+					<input placeholder="Ex: Seattle, WA" type="text" name="search" id="search" >
+					<label class="control-label" for="">Please type in a city and state below</label>
+ 		</div>
+			<button type="submit" class="btn">Submit</button>
+		</form>
+			</br>
+	</div>
+

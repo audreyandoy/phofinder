@@ -16,7 +16,9 @@
 						<div class="row">
 						 <div class="results">
 <!-- 						 <p> <%= business.location.address %></p>
- -->									<a href="<%= business.url %>">Yelp Business</a>
+ -->									
+ 									<a href="<%= business.url %>">Yelp Business</a>
+ 									<p>"<%= business.snippet_text %>"
 									<p>Phone: <%= business.display_phone %></p>
 									<p>Number of Reviews:<%= business.review_count %></p>
 									<p><img src="<%= business.rating_img_url_large %>" class="stars"></p>

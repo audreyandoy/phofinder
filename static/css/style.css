@@ -11,6 +11,10 @@ body {
 	margin-left: 25px;
 }
 
+.nav .navbar {
+	margin: 10px;
+
+}
 #video-background {
 /*  making the video fullscreen  */
   position: fixed;
@@ -23,19 +27,8 @@ body {
   z-index: -100;
 }
 
-.nav .navbar {
-	margin: 10px;
-
-}
-
-.card {
-  text-align: center;
-
-}
-
 .nav-wrapper, .btn {
   background-color: #558b2f;
-  
 }
 
 .intro {
@@ -44,10 +37,29 @@ body {
   margin-top: 150px;
 }
 
+/*Search.ejs */
+form {
+  background-color: white;
+}
+
+.search {  
+  padding: 30px 30px 30px 30px;
+  height: 200px;
+  margin-top: 200px;
+}
+
+h4 {
+  text-align: center;
+}
+
+.card {
+  text-align: center;
+}
+
 .card-panel {
-  height: 330px;
+  height: 400px;
   padding: 10px 10px 0px 10px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   text-align: center;
   width: 100%;
 }
@@ -56,16 +68,14 @@ body {
   float: right;
   margin: 0px 10px 10px 10px; 
   width: 50%;
-/*  clear: left;
-/*	display: inline-block;
-*//*	margin-left: 230px;*/
 }
 
 .input-field {
 	text-align: center;
-	margin-left: 10px;
+	margin-left: 0px;
   margin-bottom: 0px;
 }
+
 
 .title {
 	background-color: white;
@@ -126,6 +136,7 @@ button {
 h5 {
   margin-top: 5px;
 }
+
 
 
 .row {
