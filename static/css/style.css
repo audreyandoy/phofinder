@@ -57,9 +57,9 @@ h4 {
 }
 
 .card-panel {
-  height: 400px;
+  height: 520px;
   padding: 10px 10px 0px 10px;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   text-align: center;
   width: 100%;
 }
@@ -137,7 +137,18 @@ h5 {
   margin-top: 5px;
 }
 
+.address {
+  height: 50px;
+  width: 220px;
+  margin-left: 32px;
 
+}
+
+.snippet {
+  height: 110px;
+  width: 250px;
+  margin-left: 20px; 
+}
 
 .row {
   margin: 0px 0px 0px 0px;

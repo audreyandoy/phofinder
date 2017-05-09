@@ -55,6 +55,9 @@ var HasOne = function(srcModel, targetModel, options) {
   }
 
   this.sourceIdentifier = this.source.primaryKeyAttribute;
+  this.sourceKey = this.source.primaryKeyAttribute;
+  this.sourceKeyIsPrimary = this.sourceKey === this.source.primaryKeyAttribute;
+
   this.associationAccessor = this.as;
   this.options.useHooks = options.useHooks;
 
@@ -79,7 +82,7 @@ var HasOne = function(srcModel, targetModel, options) {
     /**
      * Set the associated model.
      *
-     * @param {Instance|String|Number} [newAssociation] An instance or the primary key of an instance to associate with this. Pass `null` or `undefined` to remove the association.
+     * @param {Instance|String|Number} [newAssociation] An persisted instance or the primary key of a persisted instance to associate with this. Pass `null` or `undefined` to remove the association.
      * @param {Object} [options] Options passed to getAssociation and `target.save`
      * @return {Promise}
      * @method setAssociation
@@ -128,57 +131,94 @@ HasOne.prototype.injectAttributes = function() {
   return this;
 };
 
-HasOne.prototype.injectGetter = function(instancePrototype) {
+HasOne.prototype.mixin = function(obj) {
   var association = this;
 
-  instancePrototype[this.accessors.get] = function(options) {
-    var where = {};
-    where[association.foreignKey] = this.get(association.sourceIdentifier);
-
-    if (association.scope) {
-      _.assign(where, association.scope);
-    }
-
-    options = association.target.__optClone(options) || {};
-
-    options.where = {
-      $and: [
-        options.where,
-        where
-      ]
-    };
-
-    if (options.limit === undefined) options.limit = null;
-
-    var model = association.target;
-    if (options.hasOwnProperty('scope')) {
-      if (!options.scope) {
-        model = model.unscoped();
-      } else {
-        model = model.scope(options.scope);
-      }
-    }
-
-    if (options.hasOwnProperty('schema')) {
-      model = model.schema(options.schema, options.schemaDelimiter);
-    }
-
-    return model.find(options);
+  obj[this.accessors.get] = function(options) {
+    return association.get(this, options);
   };
 
-  return this;
+  association.injectSetter(obj);
+  association.injectCreator(obj);
+};
+
+HasOne.prototype.get = function(instances, options) {
+  var association = this
+    , Target = association.target
+    , instance
+    , where = {};
+
+  options = Utils.cloneDeep(options);
+
+  if (options.hasOwnProperty('scope')) {
+    if (!options.scope) {
+      Target = Target.unscoped();
+    } else {
+      Target = Target.scope(options.scope);
+    }
+  }
+
+  if (options.hasOwnProperty('schema')) {
+    Target = Target.schema(options.schema, options.schemaDelimiter);
+  }
+
+  if (!Array.isArray(instances)) {
+    instance = instances;
+    instances = undefined;
+  }
+
+  if (instances) {
+    where[association.foreignKey] = {
+      $in: instances.map(function (instance) {
+        return instance.get(association.sourceKey);
+      })
+    };
+  } else {
+    where[association.foreignKey] = instance.get(association.sourceKey);
+  }
+
+  if (association.scope) {
+    _.assign(where, association.scope);
+  }
+
+  options.where = options.where ?
+                  {$and: [where, options.where]} :
+                  where;
+
+  if (instances) {
+    return Target.findAll(options).then(function (results) {
+      var result = {};
+      instances.forEach(function (instance) {
+        result[instance.get(association.sourceKey, {raw: true})] = null;
+      });
+
+      results.forEach(function (instance) {
+        result[instance.get(association.foreignKey, {raw: true})] = instance;
+      });
+
+      return result;
+    });
+  }
+  return Target.findOne(options);
 };
 
 HasOne.prototype.injectSetter = function(instancePrototype) {
   var association = this;
 
   instancePrototype[this.accessors.set] = function(associatedInstance, options) {
-    var instance = this;
+    var instance = this,
+      alreadyAssociated;
 
-    options = options || {};
-    options.scope = false;
+    options = _.assign({}, options, {
+      scope: false
+    });
     return instance[association.accessors.get](options).then(function(oldInstance) {
-      if (oldInstance) {
+      // TODO Use equals method once #5605 is resolved
+      alreadyAssociated = oldInstance && associatedInstance && _.every(association.target.primaryKeyAttributes, function(attribute) {
+        return oldInstance.get(attribute, {raw: true}) === associatedInstance.get(attribute, {raw: true});
+      });
+
+      if (oldInstance && !alreadyAssociated) {
         oldInstance[association.foreignKey] = null;
         return oldInstance.save(_.extend({}, options, {
           fields: [association.foreignKey],
@@ -187,7 +227,7 @@ HasOne.prototype.injectSetter = function(instancePrototype) {
         }));
       }
     }).then(function() {
-      if (associatedInstance) {
+      if (associatedInstance && !alreadyAssociated) {
         if (!(associatedInstance instanceof association.target.Instance)) {
           var tmpInstance = {};
           tmpInstance[association.target.primaryKeyAttribute] = associatedInstance;
@@ -232,3 +272,5 @@ HasOne.prototype.injectCreator = function(instancePrototype) {
 };
 
 module.exports = HasOne;
+module.exports.HasOne = HasOne;
+module.exports.default = HasOne;

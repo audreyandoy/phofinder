@@ -5,24 +5,21 @@
 <ul>
 <div class="row">
 	<% data.businesses.forEach(function(business) { %>
-
 			 		<div class="col s4 m4">
-		        <div class="card-panel white">
 					<li>
+		        <div class="card-panel white">
 						  <div class="photoName">
 								<img src="<%= business.image_url %>" class="yelp-img">
 									<h5><%= business.name %></h5>
 							</div>
-						<div class="row">
-						 <div class="results">
-<!-- 						 <p> <%= business.location.address %></p>
- -->									
- 									<a href="<%= business.url %>">Yelp Business</a>
- 									<p>"<%= business.snippet_text %>"
+							<div class="row">
+						 	<div class="results">
+						 			<p class="address"> <%= business.location.display_address %></p>
 									<p>Phone: <%= business.display_phone %></p>
-									<p>Number of Reviews:<%= business.review_count %></p>
+						<!-- 	<a href="<%= business.url %>">Yelp Business</a> --> 			<p class="snippet">"<%= business.snippet_text %>"
 									<p><img src="<%= business.rating_img_url_large %>" class="stars"></p>
-				<form action="/result" method="POST">
+									<p>Number of Reviews:<%= business.review_count %></p>
+								<form action="/result" method="POST">
 									<div class="input-field"> 
 										<div class="form-group">
 											<input type="hidden" class="form-control" name="yelpID" value="<%= business.id %>">
@@ -34,11 +31,11 @@
 									<p>
 										<button type="submit" class="waves-effect waves-light btn-large" responsive><i class="material-icons">I'm going!</i></button>
 									</p>
-							</div>
+							</form>
 						</div>
- 				</form>
-		 </li>
 					</div>
+					</div>
+		 	</li>
 				</div>
  <% }); %>
 </div>

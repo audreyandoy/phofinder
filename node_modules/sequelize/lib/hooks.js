@@ -39,6 +39,7 @@ var Utils = require('./utils')
 var hookTypes = {
   beforeValidate: {params: 2},
   afterValidate: {params: 2},
+  validationFailed: {params: 3},
   beforeCreate: {params: 2},
   afterCreate: {params: 2},
   beforeDestroy: {params: 2},
@@ -59,10 +60,13 @@ var hookTypes = {
   beforeFindAfterExpandIncludeAll: {params: 1},
   beforeFindAfterOptions: {params: 1},
   afterFind: {params: 2},
+  beforeCount: {params: 1},
   beforeDefine: {params: 2, sync: true},
   afterDefine: {params: 1, sync: true},
   beforeInit: {params: 2, sync: true},
   afterInit: {params: 1, sync: true},
+  beforeConnect: {params: 1},
+  afterConnect: {params: 2},
   beforeSync: {params: 1},
   afterSync: {params: 1},
   beforeBulkSync: {params: 1},
@@ -73,7 +77,8 @@ var hookAliases = {
   beforeDelete: 'beforeDestroy',
   afterDelete: 'afterDestroy',
   beforeBulkDelete: 'beforeBulkDestroy',
-  afterBulkDelete: 'afterBulkDestroy'
+  afterBulkDelete: 'afterBulkDestroy',
+  beforeConnection: 'beforeConnect'
 };
 
 var Hooks = {
@@ -221,6 +226,14 @@ Hooks.hasHooks = Hooks.hasHook;
  * @param {String}   name
  * @param {Function} fn   A callback function that is called with instance, options
  * @name afterValidate
+ */
+
+/**
+ * A hook that is run when validation fails
+ * @param {String}   name
+ * @param {Function} fn   A callback function that is called with instance, options, error. Error is the
+ * SequelizeValidationError. If the callback throws an error, it will replace the original validation error.
+ * @name validationFailed
  */
 
 /**
@@ -376,6 +389,13 @@ Hooks.hasHooks = Hooks.hasHook;
  */
 
 /**
+ * A hook that is run before a count query
+ * @param {String}   name
+ * @param {Function} fn   A callback function that is called with options
+ * @name beforeCount
+ */
+
+/**
  * A hook that is run before a define call
  * @param {String}   name
  * @param {Function} fn   A callback function that is called with attributes, options
@@ -401,7 +421,39 @@ Hooks.hasHooks = Hooks.hasHook;
  * @param {String}   name
  * @param {Function} fn   A callback function that is called with sequelize
  * @name afterInit
+ * @memberOf Sequelize
  */
+
+/**
+ * A hook that is run before a connection is created
+ * @param {String}   name
+ * @param {Function} fn   A callback function that is called with config passed to connection
+ * @name beforeConnect
+ * @memberOf Sequelize
+ */
+
+/**
+ * A hook that is run after a connection is created
+ * @param {String}   name
+ * @param {Function} fn   A callback function that is called with the connection object and thye config passed to connection
+ * @name afterConnect
+ * @memberOf Sequelize
+ */
+
+/**
+ * A hook that is run before Model.sync call
+ * @param {String}   name
+ * @param {Function} fn   A callback function that is called with options passed to Model.sync
+ * @name beforeSync
+ * @memberOf Sequelize
+ */
+
+ /**
+  * A hook that is run before a connection is created
+  * @param {String}   name
+  * @param {Function} fn   A callback function that is called with config passed to connection
+  * @name beforeConnect
+  */
 
  /**
   * A hook that is run before Model.sync call
