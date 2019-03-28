@@ -1,33 +1,38 @@
 var express = require("express");
+require('dotenv').config();
 var bodyParser = require("body-parser");
 var ejsLayouts = require("express-ejs-layouts");
 var session = require('express-session');
 var db = require("./models");
 var flash = require("flash");
-var request = require("request");
+
+// var request = require("request");
+
 var app = express();
 
 app.set("view engine", "ejs")
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/static/'));
 app.use(ejsLayouts);
+// Put secret in env file
 app.use(session({
-	secret: 'abcdefghijklmnop',
+  secret: process.env.SESSION_SECRET,
 	resave: false,
-	saveUninitialized: true
+  saveUninitialized: true
 }));
 
-
-app.use(flash());
-
+// app.use(flash());
 app.use(function(req, res, next) {
   if (req.session.userId) {
     db.user.findById(req.session.userId).then(function(user) {
       req.currentUser = user;
       res.locals.currentUser = user;
+      console.log("set session cookie for user");
       next();
     });
   } else {
+    console.log("Session id: " + req.session.id);
+    console.log("session not recognized for user");
     req.currentUser = false;
     res.locals.currentUser = false;
     next();
@@ -35,7 +40,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', function(req, res) {
-  console.log(req.currentUser);
+  console.log("current user is: " + req.currentUser);
   res.render('index');
 });
 

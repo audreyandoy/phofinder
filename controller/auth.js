@@ -2,11 +2,12 @@ var express = require('express');
 var db = require('../models');
 var router = express.Router();
 var flash = require("flash");
-
+var bcrypt = require('bcrypt');
+const saltRounds = 10;
 router.use(flash());
 
 router.get('/signup', function(req, res) {
-	res.render('signup');
+  res.render('signup');
 });
 
 router.post('/signup', function(req, res) {
@@ -14,25 +15,32 @@ router.post('/signup', function(req, res) {
   var email = req.body.email;
   var username = req.body.username;
   var password = req.body.password;
-  db.user.findOrCreate({
-    where: {
-      email: email
-    },
-    defaults: {
-      username: username,
-      password: password
-    }
-  }).spread(function(user, created) {  //created is a boolean
-    if (created) {
-      res.redirect('login');
-    } else {
-      Materialize.toast('User already exists', 1000);
-      
-    }
-   }).catch(function(err) {
-    res.redirect('error');
-   });
- });
+
+bcrypt.hash(password, saltRounds, function(err, hash) {
+    db.user.findOrCreate({
+      where: {
+        email: email
+      },
+      defaults: {
+        username: username,
+        password: hash
+      }
+    }).spread(function(user, created) {  //created is a boolean
+      if (created) {
+        console.log('redirected');
+        console.log("users pw: " + user.password);
+        res.redirect('login');
+      } else {
+        // Materialize.toast('User already exists', 1000);
+        console.log('User already exists');
+        console.error();
+        
+      }
+    }).catch(function(err) {
+      res.redirect('error');
+    });
+  });
+});
 
 router.get('/login', function(req, res) {
   res.render('login');
@@ -46,12 +54,12 @@ router.post('/login', function(req, res) {
       res.send(err);
     } else if (user){
       req.session.userId = user.id;
-      console.log(req.session);
+      console.log("----Session----"+ req.session);
       res.redirect('/search');
 
     } else {
       res.redirect('login');
-      
+    
     }
   });
 });

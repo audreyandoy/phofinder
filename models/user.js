@@ -34,11 +34,13 @@ module.exports = function(sequelize, DataTypes) {
       beforeCreate: function(user, options, callback) {
         if (user.password) {
           bcrypt.hash(user.password, 10, function(err, hash) {
+            user.password = hash;
              if (err) return callback(err);
-             user.password = hash;
-             callback(null,user);
+             console.log("hash"+ user.password);
+            //  callback(null,user);
           });            
         } else {
+          console.log(err)
           callback(null,user);
         }
       }
