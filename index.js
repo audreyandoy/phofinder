@@ -27,7 +27,7 @@ app.use(function(req, res, next) {
     db.user.findById(req.session.userId).then(function(user) {
       req.currentUser = user;
       res.locals.currentUser = user;
-      console.log("set session cookie for user");
+      // console.log("set session cookie for user");
       next();
     });
   } else {
@@ -40,7 +40,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', function(req, res) {
-  console.log("current user is: " + req.currentUser);
+  console.log("current user is: " + req.currentUser.username + " " + req.currentUser.id);
   res.render('index');
 });
 
@@ -48,7 +48,7 @@ app.get("/search", function(req, res) {
 	if (req.currentUser) {
 		res.render("search");
 	} else {
-		req.flash('You must be logged in to search for Pho!');
+		console.log('You must be logged in to search for Pho!');
 	}
 });
 
@@ -67,7 +67,7 @@ app.get("/profile", function(req, res) {
           favorites: favorites
     });
   } else {
-    req.flash('You must be logged in to view your profile');
+    console.log('You must be logged in to view your profile');
   }
 
   });

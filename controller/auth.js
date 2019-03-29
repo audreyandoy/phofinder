@@ -16,6 +16,7 @@ router.post('/signup', function(req, res) {
   var username = req.body.username;
   var password = req.body.password;
 
+//asynchronous hash
 bcrypt.hash(password, saltRounds, function(err, hash) {
     db.user.findOrCreate({
       where: {
@@ -34,7 +35,6 @@ bcrypt.hash(password, saltRounds, function(err, hash) {
         // Materialize.toast('User already exists', 1000);
         console.log('User already exists');
         console.error();
-        
       }
     }).catch(function(err) {
       res.redirect('error');
@@ -47,21 +47,46 @@ router.get('/login', function(req, res) {
 });
 
 router.post('/login', function(req, res) {
-  var email = req.body.email;
+  // var email = req.body.email;
   var password = req.body.password;
-  db.user.authenticate(email, password, function(err, user) {
-    if (err) {
-      res.send(err);
-    } else if (user){
-      req.session.userId = user.id;
-      console.log("----Session----"+ req.session);
-      res.redirect('/search');
 
-    } else {
-      res.redirect('login');
-    
+  db.user.findOne({
+    where: {
+      email: req.body.email
     }
-  });
+  }).then(function(user) {
+    if(!user) {
+      res.redirect('/signup');
+    } else {
+      bcrypt.compare(password, user.password, function (err, result) {
+        if (result == true) {
+          console.log("this user logged in now going home");
+          //set user id
+          req.session.userId = user.id;
+          // console.log(user.id);
+          res.redirect('/'); 
+        } else {
+          res.send('Incorrect password');
+            console.log("WRONG PW");
+        }
+        // if (err) return callback(err);
+        // callback(null, result ? user : false);
+      });
+    }
+  })
+  // db.user.authenticate(email, password, function(err, user) {
+  //   if (err) {
+  //     res.send(err);
+  //   } else if (user){
+  //     req.session.userId = user.id;
+  //     console.log("----Session----"+ req.session);
+  //     res.redirect('/search');
+
+  //   } else {
+  //     res.redirect('login');
+    
+  //   }
+  // });
 });
 
 router.get('/logout', function(req, res) {
