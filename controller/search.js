@@ -1,26 +1,38 @@
 var express = require('express');
 var db = require('../models');
 var router = express.Router();
-var yelp = require('yelp');
+var yelp = require('yelp-fusion');
 var session = require('express-session');
 
 
-var yelp = new yelp({
-  consumer_key: process.env.YELP_CONSUMER_KEY,
-  consumer_secret: process.env.YELP_CONSUMER_SECRET,
-  token: process.env.YELP_ACCESS_TOKEN,
-  token_secret: process.env.YELP_ACCESS_TOKEN_SECRET
-});
+const client = yelp.client(process.env.YELP_API_KEY)
+
+// var yelp = new yelp({
+//   consumer_key: process.env.YELP_CONSUMER_KEY,
+//   // consumer_secret: process.env.YELP_CONSUMER_SECRET,
+//   // token: process.env.YELP_ACCESS_TOKEN,
+//   // token_secret: process.env.YELP_ACCESS_TOKEN_SECRET
+// });
 
 
-// See http://www.yelp.com/developers/documentation/v2/search_api
+// See https://www.yelp.com/developers/documentation/v3/business_search
 router.get('/', function(req, res) {
 console.log("---Search page session--- "+ req.session.userId);
-	yelp.search({ term: 'pho', location: req.query.search, radius_filter: 16093.4, limit: 12 })
-	.then(function (data) {
-	  res.render('result', {data: data});
-	})
-	.catch(function (err) {
+const searchRequest = {
+	term: 'pho',
+	location:
+		req.query.search,
+	radius_filter: 16093.4,
+	limit: 12 
+}
+
+client.search(searchRequest).then(data => {
+	const result = data.jsonBody.businesses;
+	console.log(result);
+		// const prettyJson = JSON.stringify(firstResult, null, 4)
+		// console.log("businesses " + prettyJson);
+	  res.render('result', {data: result});
+	}).catch(function (err) {
 	  console.error(err);
 	});
 });

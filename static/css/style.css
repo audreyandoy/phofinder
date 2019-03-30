@@ -111,6 +111,8 @@ h3 {
   float: left;
   margin-bottom: 5px;
   margin-right: 10px;
+  height: 150px;
+  width: 100px;
 }
 
 .photoName {

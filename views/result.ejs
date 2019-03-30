@@ -4,7 +4,7 @@
 </div>
 <ul>
 <div class="row">
-	<% data.businesses.forEach(function(business) { %>
+	<% data.forEach(function(business) { %>
 			 		<div class="col s4 m4">
 					<li>
 		        <div class="card-panel white">
@@ -16,7 +16,7 @@
 						 	<div class="results">
 						 			<p class="address"> <%= business.location.display_address %></p>
 									<p>Phone: <%= business.display_phone %></p>
-						<!-- 	<a href="<%= business.url %>">Yelp Business</a> --> 			<p class="snippet">"<%= business.snippet_text %>"
+						<!-- 	<a href="<%= business.url %>">Yelp Business</a> --> 	
 									<p><img src="<%= business.rating_img_url_large %>" class="stars"></p>
 									<p>Number of Reviews:<%= business.review_count %></p>
 								<form action="/result" method="POST">
@@ -24,8 +24,7 @@
 										<div class="form-group">
 											<input type="hidden" class="form-control" name="yelpID" value="<%= business.id %>">
 											<input type="hidden" class="form-control" name="restName" value="<%= business.name %>">
-											<input type="hidden" class="form-control" name="lat" value="<%= data.region.center.latitude %>">
-											<input type="hidden" class="form-control" name="lng" value="<%= data.region.center.longitude %>">
+
 										</div>
 									</div>
 									<p>
