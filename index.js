@@ -27,11 +27,10 @@ app.use(function(req, res, next) {
     db.user.findByPk(req.session.userId).then(function(user) {
       req.currentUser = user;
       res.locals.currentUser = user;
-      // console.log("set session cookie for user");
+      console.log("Session id: " + req.session.id);
       next();
     });
   } else {
-    console.log("Session id: " + req.session.id);
     console.log("session not recognized for user");
     req.currentUser = false;
     res.locals.currentUser = false;
