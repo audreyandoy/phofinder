@@ -24,7 +24,7 @@ app.use(session({
 // app.use(flash());
 app.use(function(req, res, next) {
   if (req.session.userId) {
-    db.user.findById(req.session.userId).then(function(user) {
+    db.user.findByPk(req.session.userId).then(function(user) {
       req.currentUser = user;
       res.locals.currentUser = user;
       // console.log("set session cookie for user");
