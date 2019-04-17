@@ -1,10 +1,10 @@
 var express = require("express");
-require('dotenv').config();
 var bodyParser = require("body-parser");
 var ejsLayouts = require("express-ejs-layouts");
 var session = require('express-session');
 var db = require("./models");
 var flash = require("flash");
+require('dotenv').config();
 
 // var request = require("request");
 
@@ -23,15 +23,15 @@ app.use(session({
 
 // app.use(flash());
 app.use(function(req, res, next) {
-  if (req.session.userId) {
+  if (req.session.id) {
     db.user.findById(req.session.userId).then(function(user) {
       req.currentUser = user;
       res.locals.currentUser = user;
       // console.log("set session cookie for user");
+      console.log("Session id: " + req.session.id);
       next();
     });
   } else {
-    console.log("Session id: " + req.session.id);
     console.log("session not recognized for user");
     req.currentUser = false;
     res.locals.currentUser = false;
