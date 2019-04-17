@@ -56,11 +56,13 @@ h4 {
 }
 
 .card-panel {
-  height: 520px;
-  padding: 10px 10px 0px 10px;
   margin-bottom: 50px;
   text-align: center;
   width: 100%;
+}
+
+.results {
+  height: 300px;
 }
 
 #results {
@@ -111,15 +113,10 @@ h3 {
   float: left;
   margin-bottom: 5px;
   margin-right: 10px;
-  height: 150px;
-  width: 100px;
+  height: 200px;
+  width: 200px;
 }
 
-.photoName {
-  height: 110px;
-  text-align: left;
-  clear: left;
-}
 
 .stars {
   display: block;
@@ -136,13 +133,6 @@ button {
 
 h5 {
   margin-top: 5px;
-}
-
-.address {
-  height: 50px;
-  width: 220px;
-  margin-left: 32px;
-
 }
 
 .snippet {

@@ -20,6 +20,8 @@
 			<li><a href="/Profile">Profile</a>
 				<% } %>
 			</li>
+			<li><a href="/login">Login</a></li>
+			<li><a href="/Signup">Signup</a></li>
 			<li><a href="/Contact">Contact</a></li>
 			<li><a href="/Search" onclick="Materialize.toast('You must be logged in to search', 1000)">Search</a></li>
 			<% if (currentUser) { %>
@@ -34,10 +36,9 @@
 	</div>
 </nav>
   
-    <div class="container">
-   
-            <%- body %>
-    </div>
+<div class="container">
+	<%- body %>
+</div>
 <!-- Compiled and minified JavaScript -->
 	<!-- jQuery -->
 	<script src="https://code.jquery.com/jquery.js"></script>

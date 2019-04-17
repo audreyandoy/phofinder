@@ -9,8 +9,8 @@
 					<li>
 		        <div class="card-panel white">
 						  <div class="photoName">
+								<h5><%= business.name %></h5>
 								<img src="<%= business.image_url %>" class="yelp-img">
-									<h5><%= business.name %></h5>
 							</div>
 							<div class="row">
 						 	<div class="results">
@@ -19,19 +19,16 @@
 						<!-- 	<a href="<%= business.url %>">Yelp Business</a> --> 	
 									<p><img src="<%= business.rating_img_url_large %>" class="stars"></p>
 									<p>Number of Reviews:<%= business.review_count %></p>
-								<form action="/result" method="POST">
-									<div class="input-field"> 
-										<div class="form-group">
-											<input type="hidden" class="form-control" name="yelpID" value="<%= business.id %>">
-											<input type="hidden" class="form-control" name="restName" value="<%= business.name %>">
-
-										</div>
+							</div>
+							<form action="/result" method="POST">
+								<div class="input-field"> 
+									<div class="form-group">
+										<input type="hidden" class="form-control" name="yelpID" value="<%= business.id %>">
+										<input type="hidden" class="form-control" name="restName" value="<%= business.name %>">
 									</div>
-									<p>
-										<button type="submit" class="waves-effect waves-light btn-large" responsive><i class="material-icons">I'm going!</i></button>
-									</p>
-							</form>
-						</div>
+								</div>
+								<button type="submit" class="waves-effect waves-light btn-large" responsive><i class="material-icons">I'm going!</i></button>
+						</form>
 					</div>
 					</div>
 		 	</li>
