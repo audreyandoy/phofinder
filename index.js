@@ -5,7 +5,7 @@ var bodyParser = require("body-parser");
 var session = require('express-session');
 var db = require("./models");
 var flash = require("connect-flash");
-
+// var M = require('materialize-css');
 // var request = require("request");
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -23,6 +23,7 @@ app.use(session({
 
 app.use(flash());
 app.use(function(req, res, next) {
+  // M.updateTextFields();
   if (req.session.userId) {
     db.user.findByPk(req.session.userId).then(function(user) {
       req.currentUser = user;
