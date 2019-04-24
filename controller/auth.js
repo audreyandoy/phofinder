@@ -1,45 +1,56 @@
 var express = require('express');
 var db = require('../models');
 var router = express.Router();
-var flash = require("flash");
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
-router.use(flash());
+// var flash = require("connect-flash");
 
 router.get('/signup', function(req, res) {
   res.render('signup');
 });
 
+
 router.post('/signup', function(req, res) {
-  console.log("I am here");
+  console.log("Beginning of signup function");
   var email = req.body.email;
   var username = req.body.username;
   var password = req.body.password;
 
-//asynchronous hash
-bcrypt.hash(password, saltRounds, function(err, hash) {
-    db.user.findOrCreate({
-      where: {
-        email: email
-      },
-      defaults: {
-        username: username,
-        password: hash
-      }
-    }).spread(function(user, created) {  //created is a boolean
-      if (created) {
-        console.log('redirected');
-        console.log("users pw: " + user.password);
-        res.redirect('login');
-      } else {
-        // Materialize.toast('User already exists', 1000);
-        console.log('User already exists');
-        console.error();
-      }
-    }).catch(function(err) {
-      res.redirect('error');
-    });
-  });
+  if (password === req.body.passwordValid) {
+    //asynchronous hash
+    bcrypt.hash(password, saltRounds, function(err, hash) {
+        db.user.findOrCreate({
+          where: {
+            email: email
+          },
+          defaults: {
+            username: username,
+            password: hash
+          }
+        }).spread(function(user, created) {  //created is a boolean
+          if (created) {
+            console.log("users " + user);
+            req.session.userId = user.id;
+            req.flash('You are signed up');
+            res.redirect('login');
+          } else {
+            console.log('user already exists');
+            req.flash('A user previously signed up with that email address.');
+            res.redirect(req.get('referer'));
+
+            // user
+            // var sendError = {'message': 'user already exists'};
+            // res.render('signup', sendError)
+            // res.status(400).send('User Already sExists');
+          }
+        }).catch(function(err) {
+          console.log(err);
+          req.flash('danger', 'Error!!!1');
+        })
+    })
+  } else {
+    req.flash('danger', 'Passwords do not match!~');
+  }
 });
 
 router.get('/login', function(req, res) {
@@ -74,19 +85,7 @@ router.post('/login', function(req, res) {
       });
     }
   })
-  // db.user.authenticate(email, password, function(err, user) {
-  //   if (err) {
-  //     res.send(err);
-  //   } else if (user){
-  //     req.session.userId = user.id;
-  //     console.log("----Session----"+ req.session);
-  //     res.redirect('/search');
 
-  //   } else {
-  //     res.redirect('login');
-    
-  //   }
-  // });
 });
 
 router.get('/logout', function(req, res) {

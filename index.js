@@ -1,19 +1,19 @@
 var express = require("express");
+var app = express();
 require('dotenv').config();
 var bodyParser = require("body-parser");
-var ejsLayouts = require("express-ejs-layouts");
 var session = require('express-session');
 var db = require("./models");
-var flash = require("flash");
+var flash = require("connect-flash");
 
 // var request = require("request");
-
-var app = express();
-
-app.set("view engine", "ejs")
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static(__dirname + '/static/'));
+
+var ejsLayouts = require("express-ejs-layouts");
+app.set("view engine", "ejs")
 app.use(ejsLayouts);
+
+app.use(express.static(__dirname + '/static/'));
 // Put secret in env file
 app.use(session({
   secret: process.env.SESSION_SECRET,
@@ -21,13 +21,13 @@ app.use(session({
   saveUninitialized: true
 }));
 
-// app.use(flash());
+app.use(flash());
 app.use(function(req, res, next) {
   if (req.session.userId) {
     db.user.findByPk(req.session.userId).then(function(user) {
       req.currentUser = user;
       res.locals.currentUser = user;
-      console.log("Session id: " + req.session.id);
+      // console.log("Session id: " + req.session.id);
       next();
     });
   } else {
@@ -57,10 +57,15 @@ app.get("/contact", function(req, res) {
 
 app.get("/login", function (req, res) {
   res.render("login");
+
 });
 
 app.get("/signup", function (req, res) {
   res.render("signup");
+  console.log(req.user);
+  if (!req.user) {
+    req.flash("User already exists");
+  }
 });
 
 app.get("/profile", function(req, res) {
