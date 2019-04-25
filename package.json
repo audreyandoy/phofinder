@@ -20,7 +20,6 @@
     "finalhandler": "^1.1.1",
     "generic-pool": "^3.7.1",
     "jquery": "^3.4.0",
-    "materialize-css": "^1.0.0-rc.2",
     "nodemon": "^1.18.11",
     "pg": "^7.10.0",
     "pg-hstore": "^2.3.2",

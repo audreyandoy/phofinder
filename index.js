@@ -18,7 +18,7 @@ app.use(express.static(__dirname + '/static/'));
 app.use(session({
   secret: process.env.SESSION_SECRET,
 	resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
 }));
 
 app.use(flash());
