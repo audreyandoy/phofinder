@@ -17,10 +17,25 @@ router.get('/signup', function (req, res) {
   res.render('signup');
 });
 
+function validUser(user) {
+  // check if string and not empty/missing string
+  const validEmail = typeof user.email == 'string' &&
+    user.email.trim() != '' &&
+    user.email.trim().length >= 6;
+
+  const validPassword = typeof user.password == 'string' &&
+    user.email.trim() != '' &&
+    user.password.trim().length >= 6;
+
+  return validEmail && validPassword;
+
+}
+
 router.post('/signup', function(req, res) {
     console.log("Beginning of signup post");
     var password = req.body.password;
 
+  if (validUser(req.body)) {
     if (password === req.body.passwordValid) {
       bcrypt.hash(password, saltRounds, function (err, hash) {
         db.user.findOrCreate({
@@ -40,10 +55,13 @@ router.post('/signup', function(req, res) {
             res.render("signup", { alert: "An account with that email already exists." });    
           }
         })
-    })
-   } else {
+      })
+    } else {
       res.render("signup", { alert: "Passwords do not match. Try again." });    
-   }
+    }
+  } else {
+    res.render("signup", {alert: "Password and/or Email needs to be longer than 6 characters"});
+  }
 });
 
 
