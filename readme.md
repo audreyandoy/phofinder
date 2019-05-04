@@ -14,7 +14,6 @@ Technologies used:
     "express": "^4.13.4",
     "express-ejs-layouts": "^2.0.0",
     "express-session": "^1.13.0",
-    "flash": "^1.1.0",
     "pg": "^4.4.6",
     "pg-hstore": "^2.3.2",
     "request": "^2.69.0",

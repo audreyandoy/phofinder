@@ -1,8 +1,9 @@
 
 
 <div class="card"> 
-  <form action="/auth/login" method="POST" class="col s6">
+  <form action="/login" method="POST" role="form" class="col s6">
     <h1>Login Here</h1>
+    <% include alert %>
 
       <div class="input-field col s9">
         <input id="email" name="email" type="email" class="validate">

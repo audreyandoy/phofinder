@@ -145,7 +145,12 @@ h5 {
   width: 250px;
   margin-left: 20px; 
 }
-
+.alert {
+  background-color: red;
+  height: 30px;
+  width: 100%;
+  padding: 1%;
+}
 .row {
   margin: 0px 0px 0px 0px;
 }
