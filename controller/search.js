@@ -27,26 +27,27 @@ router.get('/', function(req, res) {
 		});
 });
 
+
 router.post('/', function(req, res) {
-	var userId = req.session.userId;
+	var userId = req.session.userId; 
 	var yelpId = req.body.yelpID;
 	var restName = req.body.restName;
 	var lat = req.body.lat;
 	var lng = req.body.lng;
-   	db.user.findById(userId).then(function(user){
 		db.userfavorites.findOrCreate({
-			where: {restName: restName},
+			where: {restName: restName,
+							userId: userId
+			},
 				defaults: {
-					 userId: userId,
 					 yelpId: yelpId,
 						lat: lat,
 						lng: lng
 				}
 		}).spread(function(userFavorite) {
 			res.redirect('/profile');
+			console.log(userFavorite);
 		});
 	});
-});
 
 
 

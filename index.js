@@ -42,6 +42,7 @@ app.use(function(req, res, next) {
 
 app.get('/', function(req, res) {
   res.render('index');
+  console.log('req current user ' + req.currentUser);
 });
 
 app.get("/search", function(req, res) {

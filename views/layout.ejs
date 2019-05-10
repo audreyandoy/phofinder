@@ -23,9 +23,10 @@
 									onclick="M.toast({html: 'You must be signed in to search', displayLength: 2000}); return false;">
 									Search</a>
 						</li>
-					<% } %>
+						<% } %>
 						<li><a href="/contact">Contact</a></li>
-					<% if (currentUser) { %>
+						<% if (currentUser) { %>
+						<li><a href="/search">Search</a></li>
 						<li><a href="/logout">Logout</a></li>
 					<% } %>
 				</ul>

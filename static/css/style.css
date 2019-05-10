@@ -30,7 +30,7 @@ body {
   background-color: #558b2f;
 }
 
-.intro {
+.middle {
   text-align: center;
   opacity: 0.7;
   margin-top: 150px;
@@ -41,12 +41,11 @@ form {
   background-color: white;
   width: 50% !important;
   margin: auto;
+  padding: 1%;
 }
 
-.search {  
-  padding: 30px 30px 30px 30px;
-  height: 200px;
-  margin-top: 200px;
+.input-field {
+  margin-top: 5%;
 }
 
 h4 {
@@ -73,13 +72,6 @@ h4 {
   width: 50%;
 }
 
-.input-field {
-	text-align: center;
-	margin-left: 0px;
-  margin-bottom: 0px;
-}
-
-
 .title {
 	background-color: white;
   opacity: 0.7;
@@ -105,10 +97,6 @@ ul {
 
 legend {
 	font-size: 30px;
-}
-
-h3 {
-	margin-top: 20px;
 }
 
 .yelp-img {

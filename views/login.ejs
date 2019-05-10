@@ -1,23 +1,24 @@
 
-
-<div class="card"> 
-  <form action="/login" method="POST" role="form" class="col s6">
-    <h1>Login Here</h1>
-    <% include alert %>
-
-      <div class="input-field col s9">
-        <input id="email" name="email" type="email" class="validate">
-        <label class="active" for="email">Email</label>
-      </div>
-
-      <div class="input-field col s9">
-        <input id="password" name="password" type="password" class="validate">
-        <label class="active" for="password">Password</label>
-      </div>
-
-      <button type="submit" id="authButton" class="btn waves-effect waves-light"><i class="material-icons">Submit</i></button>
-   
-   </form>
-
+<div class="middle">
+  <div class="card"> 
+    <form action="/login" method="POST" role="form" class="col s6">
+      <h3>Login Here</h3>
+      <% include alert %>
+  
+        <div class="input-field col s9">
+          <input id="email" name="email" type="email" class="validate">
+          <label class="active" for="email">Email</label>
+        </div>
+  
+        <div class="input-field col s9">
+          <input id="password" name="password" type="password" class="validate">
+          <label class="active" for="password">Password</label>
+        </div>
+  
+        <button type="submit" id="authButton" class="btn waves-effect waves-light"><i class="material-icons">Submit</i></button>
+     
+     </form>
+  </div>
 </div>
-</div>
+
+
