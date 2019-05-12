@@ -49,6 +49,7 @@ router.post('/', function(req, res) {
 		});
 	});
 
+// TODO: add more fields in model/db to hold more data about fav restaurants (address, phone number etc)
 
 
 

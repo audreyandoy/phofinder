@@ -5,6 +5,9 @@ A place where pho lovers can find pho restaurants in their city, favorite them a
 A work in progress.. 
 
 
+// TODO: add more fields in model/db to hold more data about fav restaurants to store info about them
+
+
 Technologies used:
 
 	Yelp API
