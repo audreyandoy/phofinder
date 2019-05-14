@@ -1,16 +1,23 @@
-<div class="middle">
-  <div class="card">
-    <div class="title">
-      <h4><%= currentUser.username %>'s Pho History</h4>
+    <div class="col s12 m6 title">
+      <h4><%= currentUser.username %>'s Pho Faves</h4>
     </div>
 
     <ul>
-      <% favorites.forEach(function(business) { %>
-       <div class="col s4 m4"><%= business.restName %> <%= business.address %> <%= business.phone %></div>
+      <div class="row">
+        <% favorites.forEach(function(business) { %>
+         <div class="col s4 m4">
+           <li>
+             <div class="card-panel white">
+               <h5><%= business.restName %></h5>
+                <p><%= business.address %></p>
+                <p><%= business.phone %></p>
+             </div>
+           </li>
+         </div>
+  
+        
+        <% });%>
 
-      
-      <% });%>
+      </div>
     </ul>
-  </div>
-</div>
 
