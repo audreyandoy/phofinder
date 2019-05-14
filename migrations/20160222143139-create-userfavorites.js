@@ -13,11 +13,17 @@ module.exports = {
       },
       restName: {
         type: Sequelize.STRING
+      }, 
+      address: {
+        type: Sequelize.STRING,
+      }, 
+      phone: {
+        type: Sequelize.STRING,
       },
       yelpId: {
         type: Sequelize.STRING
       },
-       lat: {
+      lat: {
         type: Sequelize.FLOAT
       },
       lng: {

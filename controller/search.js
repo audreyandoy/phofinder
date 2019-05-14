@@ -32,13 +32,17 @@ router.post('/', function(req, res) {
 	var userId = req.session.userId; 
 	var yelpId = req.body.yelpID;
 	var restName = req.body.restName;
+	var address = req.body.address;
+	var phone = req.body.phone;
 	var lat = req.body.lat;
 	var lng = req.body.lng;
 		db.userfavorites.findOrCreate({
 			where: {restName: restName,
 							userId: userId
 			},
-				defaults: {
+				defaults: {	
+					 address: address,
+					 phone: phone,
 					 yelpId: yelpId,
 						lat: lat,
 						lng: lng
